@@ -1,14 +1,3 @@
-<<<<<<< HEAD
--f https://download.pytorch.org/whl/torch_stable.html
-pydantic==2.6.*
-huggingface_hub==0.23.*
-gradio==4.39.*
-torch==2.4.*
-transformers==4.43.*
-accelerate==0.33.*
-pytest
-tox
-=======
 -f https://download.pytorch.org/whl/torch_stable.html 
 
 huggingface_hub==0.23.*
