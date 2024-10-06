@@ -39,4 +39,4 @@ ssh -i mykey -p ${PORT} -o StrictHostKeyChecking=no student-admin@${MACHINE} "ca
 
 git clone https://github.com/jvroo/CS553CaseStudy1.git
 
-scp -i mykey -P ${PORT} -o StrictHostKeyChecking=no -r CS553CaseStudy1 student-admin@${MACHINE}:~/test/
+scp -i mykey -P ${PORT} -o StrictHostKeyChecking=no -r CS553CaseStudy1 student-admin@${MACHINE}:~/
