@@ -208,8 +208,4 @@ with gr.Blocks(css=custom_css) as demo:
 
 # Run the Gradio app
 if __name__ == "__main__":
-<<<<<<< HEAD
-    demo.launch(share=True)
-=======
     demo.launch(share=False)
->>>>>>> origin/keon
