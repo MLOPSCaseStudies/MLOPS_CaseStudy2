@@ -4,7 +4,7 @@ PORT=22011
 MACHINE=paffenroth-23.dyn.wpi.edu
 STUDENT_ADMIN_KEY_PATH=/Users/shipz/Downloads/MLOps_Case_Study_2/Keys/
 
-ssh-keygen -f "/Users/shipz/.ssh/known_hosts" -R "[paffenroth-23.dyn.wpi.edu]:22011"
+ssh-keygen -f "$HOME/.ssh/known_hosts" -R "[paffenroth-23.dyn.wpi.edu]:22011"
 
 rm -rf tmp
 
@@ -20,7 +20,7 @@ cd tmp
 # Set the permissions of the key
 chmod 600 student-admin_key*
 
-ssh-keygen -f mykey -t ed25519 -N "careful"
+ssh-keygen -f mykey -t ed25519 -N "$PASSPHRASE"
 
 cat mykey.pub >> authorized_keys
 # two >> appends
@@ -33,10 +33,16 @@ echo "checking that the authorized_keys file is correct"
 ls -l authorized_keys
 cat authorized_keys
 
+# Copy the authorized_keys file to the server
 scp -i ${STUDENT_ADMIN_KEY_PATH}/student-admin_key -P ${PORT} -o StrictHostKeyChecking=no authorized_keys student-admin@${MACHINE}:~/.ssh/
+
+# Add the key to the ssh-agent
+eval "$(ssh-agent -s)"
+ssh-add mykey <<< "$PASSPHRASE"
 
 ssh -i mykey -p ${PORT} -o StrictHostKeyChecking=no student-admin@${MACHINE} "cat ~/.ssh/authorized_keys"
 
 git clone https://github.com/jvroo/CS553CaseStudy1.git
 
 scp -i mykey -P ${PORT} -o StrictHostKeyChecking=no -r CS553CaseStudy1 student-admin@${MACHINE}:~/
+
