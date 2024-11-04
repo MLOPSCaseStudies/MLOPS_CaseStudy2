@@ -33,25 +33,25 @@ jobs:
       - name: Test with tox
         run: tox
 
-  sync-to-hub:
-    runs-on: ubuntu-latest
-    needs: test  # This line makes sync-to-hub dependent on the test job
+  # sync-to-hub:
+  #   runs-on: ubuntu-latest
+  #   needs: test  # This line makes sync-to-hub dependent on the test job
 
-    steps:
-      - name: Checkout for Hugging Face push
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+  #   steps:
+  #     - name: Checkout for Hugging Face push
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Add remote 
-        env:
-          CaseStudy1: ${{ secrets.CASESTUDY3 }}
-        run: git remote add space https://poojary9991:$CASESTUDY3@huggingface.co/spaces/ML-OPS-Grp11/CaseStudy1
+  #     - name: Add remote 
+  #       env:
+  #         CaseStudy1: ${{ secrets.CASESTUDY3 }}
+  #       run: git remote add space https://poojary9991:$CASESTUDY3@huggingface.co/spaces/ML-OPS-Grp11/CaseStudy1
 
-      - name: Push to hub
-        env:
-          CaseStudy1: ${{ secrets.CASESTUDY3 }}
-        run: git push --force https://poojary9991:$CASESTUDY3@huggingface.co/spaces/ML-OPS-Grp11/CaseStudy1
+  #     - name: Push to hub
+  #       env:
+  #         CaseStudy1: ${{ secrets.CASESTUDY3 }}
+  #       run: git push --force https://poojary9991:$CASESTUDY3@huggingface.co/spaces/ML-OPS-Grp11/CaseStudy1
 
   notify:
     runs-on: ubuntu-latest
