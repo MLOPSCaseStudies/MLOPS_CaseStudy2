@@ -3,9 +3,5 @@ torch
 transformers
 accelerate
 huggingface_hub
-<<<<<<< HEAD
 pydantic
 pytest
-=======
-pytest
->>>>>>> origin/keon
