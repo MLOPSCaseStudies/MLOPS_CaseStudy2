@@ -1,7 +1,0 @@
-gradio
-torch
-transformers
-accelerate
-huggingface_hub
-pydantic
-pytest
