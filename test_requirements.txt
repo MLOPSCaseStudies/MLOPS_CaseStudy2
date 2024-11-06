@@ -1,0 +1,8 @@
+gradio
+torch
+transformers
+accelerate
+huggingface_hub
+pydantic
+pytest
+prometheus_client
