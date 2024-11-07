@@ -12,7 +12,7 @@ SUCCESSFUL_REQUESTS = Counter('app_successful_requests_total', 'Total number of 
 FAILED_REQUESTS = Counter('app_failed_requests_total', 'Total number of failed requests')
 REQUEST_DURATION = Summary('app_request_duration_seconds', 'Time spent processing request')
 
-def local_sentiment_analysis(review):
+
 
 # Define models for local and remote inference
 local_model = "distilbert-base-uncased-finetuned-sst-2-english"
