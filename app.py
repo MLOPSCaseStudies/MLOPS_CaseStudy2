@@ -11,7 +11,6 @@ REQUEST_COUNTER = Counter('app_requests_total', 'Total number of requests')
 SUCCESSFUL_REQUESTS = Counter('app_successful_requests_total', 'Total number of successful requests')
 FAILED_REQUESTS = Counter('app_failed_requests_total', 'Total number of failed requests')
 REQUEST_DURATION = Summary('app_request_duration_seconds', 'Time spent processing request')
-SENTIMENT_ANALYSIS_ERRORS = Counter('app_sentiment_analysis_errors_total', 'Total number of errors in sentiment analysis')
 
 def local_sentiment_analysis(review):
 
