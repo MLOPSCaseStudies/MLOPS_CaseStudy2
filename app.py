@@ -217,5 +217,5 @@ with gr.Blocks(css=custom_css) as demo:
 
 # Run the Gradio app
 if __name__ == "__main__":
-    start_http_server(8000)
+    start_http_server(20000)
     demo.launch(share=False)
