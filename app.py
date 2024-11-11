@@ -11,18 +11,33 @@ REQUEST_COUNTER = Counter('app_requests_total', 'Total number of requests')
 SUCCESSFUL_REQUESTS = Counter('app_successful_requests_total', 'Total number of successful requests')
 FAILED_REQUESTS = Counter('app_failed_requests_total', 'Total number of failed requests')
 REQUEST_DURATION = Summary('app_request_duration_seconds', 'Time spent processing request')
+AVERAGE_CONFIDENCE_SCORE = Summary('average_confidence_score', 'Average confidence score for sentiment analysis')
+
+
+#Model Usage
+LOCAL_MODE_USAGE = Counter('local_mode_usage_total', 'Total number of times the local pipeline was used')
+REMOTE_MODE_USAGE = Counter('remote_mode_usage_total', 'Total number of times the remote pipeline was used')
+LOCAL_PIPELINE_ERRORS = Counter('local_pipeline_errors_total', 'Total number of errors in the local pipeline')
+REMOTE_PIPELINE_ERRORS = Counter('remote_pipeline_errors_total', 'Total number of errors in the remote pipeline')
+LOCAL_PROCESSING_TIME = Summary('local_processing_time_seconds', 'Time spent processing requests using the local pipeline')
+REMOTE_PROCESSING_TIME = Summary('remote_processing_time_seconds', 'Time spent processing requests using the remote pipeline')
+
+#MOVIES
+MOVIE_INFO_REQUEST_COUNTER = Counter('movie_info_requests_total', 'Total number of movie information fetch requests')
+MOVIE_INFO_SUCCESS = Counter('movie_info_successful_requests_total', 'Total number of successful movie information fetch requests')
 
 
 
 # Define models for local and remote inference
 local_model = "distilbert-base-uncased-finetuned-sst-2-english"
+
 remote_model = "siebert/sentiment-roberta-large-english"
 
 # Load the local sentiment analysis pipeline with the specified model
 local_pipeline = pipeline("sentiment-analysis", model=local_model)
-
+HF_API_KEY = os.getenv("HF_API_KEY")
 # Initialize the inference client
-remote_inference_client = InferenceClient(remote_model)
+remote_inference_client = InferenceClient(model=remote_model, token=HF_API_KEY)
 
 # OMDb API key (replace with your own API key)
 OMDB_API_URL = 'http://www.omdbapi.com/'
@@ -217,5 +232,5 @@ with gr.Blocks(css=custom_css) as demo:
 
 # Run the Gradio app
 if __name__ == "__main__":
-    start_http_server(20000)
+    start_http_server(8000)
     demo.launch(share=False)
