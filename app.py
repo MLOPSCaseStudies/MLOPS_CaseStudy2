@@ -1,5 +1,5 @@
 import gradio as gr
-from transformers import pipeline
+# from transformers import pipeline
 import matplotlib.pyplot as plt
 import requests
 from huggingface_hub import InferenceClient
@@ -29,12 +29,12 @@ MOVIE_INFO_SUCCESS = Counter('movie_info_successful_requests_total', 'Total numb
 
 
 # Define models for local and remote inference
-local_model = "distilbert-base-uncased-finetuned-sst-2-english"
+# local_model = "distilbert-base-uncased-finetuned-sst-2-english"
 
 remote_model = "siebert/sentiment-roberta-large-english"
 
 # Load the local sentiment analysis pipeline with the specified model
-local_pipeline = pipeline("sentiment-analysis", model=local_model)
+# local_pipeline = pipeline("sentiment-analysis", model=local_model)
 HF_API_KEY = os.getenv("HF_API_KEY")
 # Initialize the inference client
 remote_inference_client = InferenceClient(model=remote_model, token=HF_API_KEY)
