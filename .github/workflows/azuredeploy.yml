@@ -26,5 +26,5 @@ jobs:
 
     - name: Run Deployment Script
       run: |
-        chmod +x ./scripts/deploy.sh
-        ./scripts/deploy.sh
+        chmod +x ./Azure_Build.sh
+        ./Azure_Build.sh
