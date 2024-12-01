@@ -1,0 +1,40 @@
+name: Deploy to Azure Container Apps
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when code is pushed to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Build and Push Docker Image
+      env:
+        REGISTRY_NAME: cs553registrygroup11
+        IMAGE_NAME: cs553appgroup11
+      run: |
+        az acr login --name $REGISTRY_NAME
+        docker build -t $REGISTRY_NAME.azurecr.io/$IMAGE_NAME:latest .
+        docker push $REGISTRY_NAME.azurecr.io/$IMAGE_NAME:latest
+
+    - name: Deploy to Azure Container Apps
+      env:
+        RESOURCE_GROUP: CS553_CaseStudy4_group11
+        CONTAINER_APP_NAME: casestudy4group11
+        REGISTRY_NAME: cs553registrygroup11
+        IMAGE_NAME: cs553appgroup11
+      run: |
+        az containerapp update \
+          --name $CONTAINER_APP_NAME \
+          --resource-group $RESOURCE_GROUP \
+          --image $REGISTRY_NAME.azurecr.io/$IMAGE_NAME:latest
