@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - deploy_cloud
+env:
+   HF_API_KEY: ${{ secrets.HF_API_KEY }}
+   OMDB: ${{ secrets.OMDB }}
 
 jobs:
   deploy:
@@ -26,9 +29,6 @@ jobs:
         
 
       - name: Run Deployment Script
-        env:
-          HF_API_KEY: ${{ secrets.HF_API_KEY }}
-          OMDB: ${{ secrets.OMDB }}
         run: |
          chmod +x ./Azure_Build.sh
          ./Azure_Build.sh
