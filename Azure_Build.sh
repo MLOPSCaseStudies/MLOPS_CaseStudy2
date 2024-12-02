@@ -13,10 +13,10 @@ az containerapp create \
     --name casestudy4group11 \
     --resource-group CS553_CaseStudy4_group11 \
     --environment managedEnvironment-CS553CaseStudy4-aadd \
-    --image poojary9991/cs553_casestudy4:latest \
-    --set-env-vars HF_API_KEY="$HF_API_KEY" OMDB="$OMDB" \    
+    --image poojary9991/cs553_casestudy4:latest \  
     --ingress external \
     --target-port 7860
+    --env-vars HF_API_KEY=${HF_API_KEY} OMDB=${OMDB}
 
 
 # Enable HTTPS Ingress
