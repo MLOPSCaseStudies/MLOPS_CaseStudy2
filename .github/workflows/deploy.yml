@@ -24,6 +24,11 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Set Env variables
+        run: |
+          export HF_API_KEY= ${{ secrets.HF_API_KEY }} 
+          export OMDB= ${{ secrets.OMDB }}   
+
       - name: Run Deployment Script
         run: |
           chmod +x ./Azure_Build.sh
