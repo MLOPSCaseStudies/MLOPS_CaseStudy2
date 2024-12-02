@@ -27,9 +27,41 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
         
 
-      - name: Run Deployment Script
-        run: |
-         chmod +x ./Azure_Build.sh
-         ./Azure_Build.sh
+      # - name: Run Deployment Script
+      #   run: |
+      #    chmod +x ./Azure_Build.sh
+      #    ./Azure_Build.sh
+      #   env:
+      #     HF_API_KEY: ${{ secrets.HF_API_KEY }}
+      - name: Create and Deploy Container App
         env:
           HF_API_KEY: ${{ secrets.HF_API_KEY }}
+          OMDB: ${{ secrets.OMDB }}
+        run: |
+           # Build and push Docker image
+           docker build -t poojary9991/cs553_casestudy4 .
+           docker push poojary9991/cs553_casestudy4
+
+           # Create the Azure Container App with environment variables
+           az containerapp create \
+             --name casestudy4group11 \
+             --resource-group CS553_CaseStudy4_group11 \
+             --environment managedEnvironment-CS553CaseStudy4-aadd \
+             --image poojary9991/cs553_casestudy4:latest \
+             --set-env-vars HF_API_KEY=$HF_API_KEY OMDB=$OMDB \
+             --ingress external \
+             --target-port 7860
+
+           az containerapp ingress enable \
+             --name casestudy4group11 \
+             --resource-group CS553_CaseStudy4_group11 \
+             --type external \
+             --target-port 7860
+
+           # Retrieve the container app URL
+           az containerapp show \
+             --name casestudy4group11 \
+             --resource-group CS553_CaseStudy4_group11 \
+             --query properties.configuration.ingress.fqdn \
+           
+
