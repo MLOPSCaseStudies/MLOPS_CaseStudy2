@@ -12,7 +12,7 @@ az containerapp create \
     --resource-group CS553_CaseStudy4_group11 \
     --environment managedEnvironment-CS553CaseStudy4-aadd \
     --image poojary9991/cs553_casestudy4:latest \
-    --environment-variables HF_API_KEY=$HF_API_KEY  OMDB=$OMDB \    
+    --environment-variables HF_API_KEY=$HF_API_KEY, OMDB=$OMDB \    
     --ingress external \
     --target-port 7860
 
