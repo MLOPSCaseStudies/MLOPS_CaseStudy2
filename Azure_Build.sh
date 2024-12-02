@@ -6,6 +6,10 @@ docker build -t poojary9991/cs553_casestudy4 .
 # Push the container to Docker Hub
 docker push poojary9991/cs553_casestudy4
 
+echo $HF_API_KEY
+echo $OMDB
+
+
 # Run the container on Azure
 az containerapp create \
     --name casestudy4group11 \
