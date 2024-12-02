@@ -10,7 +10,7 @@ docker push poojary9991/cs553_casestudy4
 az containerapp create \
     --name casestudy4group11 \
     --resource-group CS553_CaseStudy4_group11 \
-    --environment managedEnvironment-CS553CaseStudy4-9707 \
+    --environment managedEnvironment-CS553CaseStudy4-aadd \
     --image poojary9991/cs553_casestudy4:latest \
     --ingress external \
     --target-port 7860
