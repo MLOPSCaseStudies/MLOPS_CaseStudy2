@@ -35,13 +35,13 @@ remote_model = "siebert/sentiment-roberta-large-english"
 
 # Load the local sentiment analysis pipeline with the specified model
 # local_pipeline = pipeline("sentiment-analysis", model=local_model)
-HF_API_KEY = os.getenv("HF_API_KEY")
+HF_API_KEY = os.getenv("hf")
 # Initialize the inference client
 remote_inference_client = InferenceClient(model=remote_model, token=HF_API_KEY)
 
 # OMDb API key (replace with your own API key)
 OMDB_API_URL = 'http://www.omdbapi.com/'
-OMDB_API_KEY = os.getenv("OMDB")  # Fetching API key from environment variables
+OMDB_API_KEY = os.getenv("omdb")  # Fetching API key from environment variables
 
 # Function to fetch movie information from OMDb API
 def fetch_movie_info(movie_name):
