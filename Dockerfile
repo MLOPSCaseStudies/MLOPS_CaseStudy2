@@ -1,5 +1,11 @@
 FROM python:3.10-slim
 
+# Set environment variables
+ARG HF_API_KEY
+ARG OMDB
+ENV HF_API_KEY=${HF_API_KEY}
+ENV OMDB=${OMDB}
+
 WORKDIR /opt/app
 COPY . .
 RUN pip install --no-cache-dir -r /opt/app/requirements.txt
