@@ -6,8 +6,6 @@ docker build -t poojary9991/cs553_casestudy4 .
 # Push the container to Docker Hub
 docker push poojary9991/cs553_casestudy4
 
-echo $HF_API_KEY
-echo $OMDB
 
 
 # Run the container on Azure
@@ -16,7 +14,7 @@ az containerapp create \
     --resource-group CS553_CaseStudy4_group11 \
     --environment managedEnvironment-CS553CaseStudy4-aadd \
     --image poojary9991/cs553_casestudy4:latest \
-    --set-env-vars HF_API_KEY=$HF_API_KEY, OMDB=$OMDB \    
+    --set-env-vars HF_API_KEY="$HF_API_KEY" OMDB="$OMDB" \    
     --ingress external \
     --target-port 7860
 
