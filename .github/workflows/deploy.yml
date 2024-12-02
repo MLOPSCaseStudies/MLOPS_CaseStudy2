@@ -24,10 +24,10 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Set Env variables
+      - name: Set Environment Variables
         run: |
-          export HF_API_KEY= ${{ secrets.HF_API_KEY }} 
-          export OMDB= ${{ secrets.OMDB }}   
+         export HF_API_KEY=${{ secrets.HF_API_KEY }}
+         export OMDB=${{ secrets.OMDB }}  
 
       - name: Run Deployment Script
         run: |
